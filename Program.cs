@@ -1,3 +1,3 @@
 ﻿using AdventOfCode2022.Src;
 
-Day02.RunDay02_2();
+Day03.RunDay03_2();
