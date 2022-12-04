@@ -46,11 +46,10 @@ namespace AdventOfCode2022.Src
                 int start2 = int.Parse(pair[1][..pair[1].IndexOf('-')]);
                 int end2 = int.Parse(pair[1][(pair[1].IndexOf('-') + 1)..]);
 
-                if (start1 > end2 || end1 < start2)
+                if (start1 <= end2 && end1 >= start2)
                 {
-                    continue;
+                    overlaps++;
                 }
-                overlaps++;
             }
 
             Console.WriteLine(overlaps);
