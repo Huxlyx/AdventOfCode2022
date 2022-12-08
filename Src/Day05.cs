@@ -13,29 +13,16 @@ namespace AdventOfCode2022.Src
         public static void RunDay05_1()
         {
             var lines = File.ReadAllLines("Res/Day05.txt");
+
             List<string> startStacks = lines.TakeWhile(x => ! string.IsNullOrEmpty(x.Trim())).ToList();
-
-            int stackCount = matchNumbers.Matches(startStacks[^1]).Count;
-            string[] stacks = new string[stackCount];
-
-            for (int i = 0; i < startStacks.Count - 1; ++i)
-            {
-                for (int j = 0; j < stackCount; ++j)
-                {
-                    char item = startStacks[i][j * 4 + 1];
-                    if (item != ' ')
-                    {
-                        stacks[j] = item + stacks[j];
-                    }
-                }
-            }
+            string[] stacks = PrepareStacks(startStacks);
 
             PrintStacks(stacks);
 
             foreach (string line in lines.Skip(startStacks.Count + 1))
             {
-                var matches = matchNumbers.Matches(line);
                 /* get instructions */
+                var matches = matchNumbers.Matches(line);
                 int moveCount = int.Parse(matches[0].Value);
                 int src = int.Parse(matches[1].Value);
                 int target = int.Parse(matches[2].Value);
@@ -47,11 +34,9 @@ namespace AdventOfCode2022.Src
 
             PrintStacks(stacks);
 
-            foreach (string stack in stacks)
-            {
-                /* last char of each stack is the output */
-                Console.Write(stack[^1]);
-            }
+            /* last char of each stack is the output */
+            stacks.ToList().ForEach(x => Console.Write(x[^1]));
+
             Console.WriteLine();
         }
 
@@ -60,6 +45,31 @@ namespace AdventOfCode2022.Src
             var lines = File.ReadAllLines("Res/Day05.txt");
 
             List<string> startStacks = lines.TakeWhile(x => !string.IsNullOrEmpty(x.Trim())).ToList();
+            string[] stacks = PrepareStacks(startStacks);
+
+            foreach (string line in lines.Skip(startStacks.Count + 1))
+            {
+                /* get instructions */
+                var matches = matchNumbers.Matches(line);
+                int moveCount = int.Parse(matches[0].Value);
+                int src = int.Parse(matches[1].Value);
+                int target = int.Parse(matches[2].Value);
+
+                /* move string based */
+                stacks[target - 1] = $"{stacks[target - 1]}{stacks[src - 1][^moveCount..]}";  /* <- do not reverse here */
+                stacks[src - 1] = stacks[src - 1][..^moveCount];
+            }
+
+            PrintStacks(stacks);
+
+            /* last char of each stack is the output */
+            stacks.ToList().ForEach(x => Console.Write(x[^1]));
+
+            Console.WriteLine();
+        }
+
+        private static string[] PrepareStacks(List<string> startStacks)
+        {
             int stackCount = matchNumbers.Matches(startStacks[^1]).Count;
             string[] stacks = new string[stackCount];
 
@@ -74,30 +84,7 @@ namespace AdventOfCode2022.Src
                     }
                 }
             }
-
-            PrintStacks(stacks);
-
-            foreach (string line in lines.Skip(startStacks.Count + 1))
-            {
-                var matches = matchNumbers.Matches(line);
-                /* get instructions */
-                int moveCount = int.Parse(matches[0].Value);
-                int src = int.Parse(matches[1].Value);
-                int target = int.Parse(matches[2].Value);
-
-                /* move string based */
-                stacks[target - 1] = $"{stacks[target - 1]}{stacks[src - 1][^moveCount..]}";  /* <- do not reverse here */
-                stacks[src - 1] = stacks[src - 1][..^moveCount];
-            }
-
-            PrintStacks(stacks);
-
-            foreach (string stack in stacks)
-            {
-                /* last char of each stack is the output */
-                Console.Write(stack[^1]);
-            }
-            Console.WriteLine();
+            return stacks;
         }
 
 
@@ -110,15 +97,7 @@ namespace AdventOfCode2022.Src
             {
                 for (int j = 0; j < stacks.Length; ++j)
                 {
-                    if (stacks[j].Length > i)
-                    {
-                        sb.Append($"[{stacks[j][i]}] ");
-                    }
-                    else
-                    {
-                        sb.Append("    ");
-                    }
-
+                    sb.Append(stacks[j].Length > i ? $"[{stacks[j][i]}] " : "    ");
                 }
                 sb.AppendLine();
             }
@@ -128,7 +107,7 @@ namespace AdventOfCode2022.Src
             {
                 sb.Append(i).Append("   ");
             }
-
+            
             Console.WriteLine(sb.AppendLine().ToString());
         }
     }
