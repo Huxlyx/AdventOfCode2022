@@ -1,5 +1,5 @@
 ﻿# AoC 2022 🥳
-##Benchmarks
+## Benchmarks
 ```plain
 BenchmarkDotNet=v0.13.2, OS=Windows 10 (10.0.19045.2251)
 AMD Ryzen 9 7900X, 1 CPU, 24 logical and 12 physical cores
