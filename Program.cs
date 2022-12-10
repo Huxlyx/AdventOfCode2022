@@ -3,5 +3,5 @@ using System.Diagnostics;
 
 Stopwatch sw = new();
 sw.Start();
-Day08.RunDay08_2();
+Day10.RunDay10_2();
 Console.WriteLine("Done after " + sw.Elapsed);
