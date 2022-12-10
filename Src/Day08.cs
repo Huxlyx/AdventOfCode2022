@@ -1,13 +1,11 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
-
+﻿
 namespace AdventOfCode2022.Src
 {
-    public class Day08
+    public class Day08 : IAoC
     {
         private const string INPUT = "Res/Day08.txt";
 
-        public static void RunDay08_1()
+        public static void Part1()
         {
             var lines = File.ReadAllLines(INPUT);
             var treeMap = lines.Select(line => Array.ConvertAll(line.ToCharArray(), ch => ch - '0')).ToArray();
@@ -45,7 +43,9 @@ namespace AdventOfCode2022.Src
                 }
             }
 
+#if DEBUG
             Console.WriteLine(visible);
+#endif
         }
 
         private static void MaybeMark(int[][] map, int x, int y, ref int highest, ref int visible)
@@ -68,7 +68,7 @@ namespace AdventOfCode2022.Src
             }
         }
 
-        public static void RunDay08_2()
+        public static void Part2()
         {
             var lines = File.ReadAllLines(INPUT);
             var treeMap = lines.Select(line => Array.ConvertAll(line.ToCharArray(), ch => ch - '0')).ToArray();
@@ -126,8 +126,9 @@ namespace AdventOfCode2022.Src
                 }
             }
 
-
+#if DEBUG
             Console.WriteLine(maxScenicScore);
+#endif
         }
     }
 }

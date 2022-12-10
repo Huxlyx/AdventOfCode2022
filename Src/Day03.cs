@@ -1,9 +1,9 @@
 ﻿
 namespace AdventOfCode2022.Src
 {
-    public class Day03
+    public class Day03 : IAoC
     {
-        public static void RunDay03_1()
+        public static void Part1()
         {
             var lines = File.ReadAllLines("Res/Day03.txt");
 
@@ -25,10 +25,12 @@ namespace AdventOfCode2022.Src
                 }
             }
 
+#if DEBUG
             Console.WriteLine(sumOfPriorities);
+#endif
         }
 
-        public static void RunDay03_2()
+        public static void Part2()
         {
             var lines = File.ReadAllLines("Res/Day03.txt");
 
@@ -43,7 +45,9 @@ namespace AdventOfCode2022.Src
                 sumOfBadges += char.IsLower(dupl2) ? (dupl2 - 'a' + 1) : (dupl2 - 'A' + 27);
             }
 
+#if DEBUG
             Console.WriteLine(sumOfBadges);
+#endif
         }
     }
 }

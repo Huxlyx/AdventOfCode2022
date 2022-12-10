@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode2022.Src
 {
-    public class Day01
+    public class Day01 : IAoC
     {
-        public static void RunDay01_1()
+        public static void Part1()
         {
             var lines = File.ReadAllLines("Res/Day01.txt");
 
@@ -31,10 +31,12 @@ namespace AdventOfCode2022.Src
                 }
             }
 
+#if DEBUG
             Console.WriteLine(calories > maxCalories ? calories : maxCalories);
+#endif
         }
 
-        public static void RunDay01_2()
+        public static void Part2()
         {
             var lines = File.ReadAllLines("Res/Day01.txt");
 
@@ -56,7 +58,9 @@ namespace AdventOfCode2022.Src
             calorieSum.Add(calories);
             calorieSum.Sort();
 
+#if DEBUG
             Console.WriteLine(calorieSum[^1] + calorieSum[^2] + calorieSum[^3]);
+#endif
         }
     }
 }

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace AdventOfCode2022.Src
 {
-    public class Day02
+    public class Day02 : IAoC
     {
-
-        public static void RunDay02_1()
+        public static void Part1()
         {
             /* only 9 possible outcomes 
                 A X = 3 + 1
@@ -60,11 +59,12 @@ namespace AdventOfCode2022.Src
                         break;
                 }
             }
-
+#if DEBUG
             Console.WriteLine(score);
+#endif
         }
 
-        public static void RunDay02_2()
+        public static void Part2()
         {
             /* only 9 possible outcomes 
                 A X = 0 + 3
@@ -116,7 +116,9 @@ namespace AdventOfCode2022.Src
                 }
             }
 
+#if DEBUG
             Console.WriteLine(score);
+#endif
         }
 
     }

@@ -1,17 +1,20 @@
 ﻿namespace AdventOfCode2022.Src
 {
-    public class Day10
+    public class Day10 : IAoC
     {
         private const string INPUT = "Res/Day10.txt";
 
-        public static void RunDay10_1()
+        public static void Part1()
         {
             var lines = File.ReadAllLines(INPUT);
             List<int> strengths = SignalStrengthPerCycle(lines);
-            Console.WriteLine(20 * strengths[19] + 60 * strengths[59] + 100 * strengths[99] + 140 * strengths[139] + 180 * strengths[179] + 220 * strengths[219]);
+            int result = 20 * strengths[19] + 60 * strengths[59] + 100 * strengths[99] + 140 * strengths[139] + 180 * strengths[179] + 220 * strengths[219];
+#if DEBUG
+            Console.WriteLine(result);
+#endif
         }
 
-        public static void RunDay10_2()
+        public static void Part2()
         {
             var lines = File.ReadAllLines(INPUT);
 
@@ -22,12 +25,15 @@
                 int posX = i % 40;
                 if (i > 0 && i % 40 == 0)
                 {
+#if DEBUG
                     Console.WriteLine();
+#endif
                 }
 
+#if DEBUG
                 Console.Write((posX >= strengths[i] - 1 && posX <= strengths[i] + 1) ? '#' : '.');
+#endif
             }
-            Console.WriteLine();
         }
 
         private static List<int> SignalStrengthPerCycle(string[] input)

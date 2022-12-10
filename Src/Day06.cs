@@ -1,16 +1,11 @@
 ﻿
-using System.Text;
-using System.Text.RegularExpressions;
-
 namespace AdventOfCode2022.Src
 {
-    public class Day06
+    public class Day06 : IAoC
     {
         private const string INPUT = "Res/Day06.txt";
 
-        private static Regex matchNumbers = new(@"(\d)+", RegexOptions.Compiled);
-
-        public static void RunDay06_1()
+        public static void Part1()
         {
             var lines = File.ReadAllLines(INPUT);
             string data = lines[0]; /* one datastream */
@@ -28,15 +23,15 @@ namespace AdventOfCode2022.Src
 
                 if (set.Count == 4)
                 {
+#if DEBUG
                     Console.WriteLine(i + 1);
+#endif
                     break;
                 }
             }
-
-            Console.WriteLine();
         }
 
-        public static void RunDay06_2()
+        public static void Part2()
         {
             var lines = File.ReadAllLines(INPUT);
             string data = lines[0]; /* one datastream */
@@ -64,12 +59,12 @@ namespace AdventOfCode2022.Src
 
                 if (set.Count == 14)
                 {
+#if DEBUG
                     Console.WriteLine(i + 1);
+#endif
                     break;
                 }
             }
-
-            Console.WriteLine();
         }
     }
 }

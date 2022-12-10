@@ -1,23 +1,24 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
-
+﻿
 namespace AdventOfCode2022.Src
 {
-    public class Day07
+    public class Day07: IAoC
     {
         private const string INPUT = "Res/Day07.txt";
 
-        public static void RunDay07_1()
+        public static void Part1()
         {
             var lines = File.ReadAllLines(INPUT);
             Directory root = new("/", null);
             BuildStructure(lines, root);
 
             const int THRESHOLD = 100_000;
-            Console.WriteLine(root.DirsRecurse().Where(dir => dir.Size <= THRESHOLD).Select(dir => dir.Size).ToList().Sum()); /* sum of dirs <= 100_000 */
+            long sumOfDirs = root.DirsRecurse().Where(dir => dir.Size <= THRESHOLD).Select(dir => dir.Size).ToList().Sum();
+#if DEBUG
+            Console.WriteLine(sumOfDirs); /* sum of dirs <= 100_000 */
+#endif
         }
 
-        public static void RunDay07_2()
+        public static void Part2()
         {
             var lines = File.ReadAllLines(INPUT);
             Directory root = new("/", null);
@@ -28,12 +29,12 @@ namespace AdventOfCode2022.Src
             {
                 if (freeSpace + dir.Size >= 30_000_000)
                 {
+#if DEBUG
                     Console.WriteLine(dir.Size);
+#endif
                     break;
                 }
             }
-
-            Console.WriteLine();
         }
 
         private static void BuildStructure(string[] lines, Directory root)

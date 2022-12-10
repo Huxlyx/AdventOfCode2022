@@ -4,25 +4,28 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2022.Src
 {
-    public class Day05
+    public partial class Day05 : IAoC
     {
         private const string INPUT = "Res/Day05.txt";
 
-        private static Regex matchNumbers = new(@"(\d)+", RegexOptions.Compiled);
+        [GeneratedRegex("(\\d)+", RegexOptions.Compiled)]
+        private static partial Regex MatchNumber();
 
-        public static void RunDay05_1()
+        public static void Part1()
         {
-            var lines = File.ReadAllLines("Res/Day05.txt");
+            var lines = File.ReadAllLines(INPUT);
 
             List<string> startStacks = lines.TakeWhile(x => ! string.IsNullOrEmpty(x.Trim())).ToList();
             string[] stacks = PrepareStacks(startStacks);
 
+#if DEBUG
             PrintStacks(stacks);
+#endif
 
             foreach (string line in lines.Skip(startStacks.Count + 1))
             {
                 /* get instructions */
-                var matches = matchNumbers.Matches(line);
+                var matches = MatchNumber().Matches(line);
                 int moveCount = int.Parse(matches[0].Value);
                 int src = int.Parse(matches[1].Value);
                 int target = int.Parse(matches[2].Value);
@@ -32,17 +35,19 @@ namespace AdventOfCode2022.Src
                 stacks[src - 1] = stacks[src - 1][..^moveCount];
             }
 
+#if DEBUG
             PrintStacks(stacks);
 
             /* last char of each stack is the output */
             stacks.ToList().ForEach(x => Console.Write(x[^1]));
 
             Console.WriteLine();
+#endif
         }
 
-        public static void RunDay05_2()
+        public static void Part2()
         {
-            var lines = File.ReadAllLines("Res/Day05.txt");
+            var lines = File.ReadAllLines(INPUT);
 
             List<string> startStacks = lines.TakeWhile(x => !string.IsNullOrEmpty(x.Trim())).ToList();
             string[] stacks = PrepareStacks(startStacks);
@@ -50,7 +55,7 @@ namespace AdventOfCode2022.Src
             foreach (string line in lines.Skip(startStacks.Count + 1))
             {
                 /* get instructions */
-                var matches = matchNumbers.Matches(line);
+                var matches = MatchNumber().Matches(line);
                 int moveCount = int.Parse(matches[0].Value);
                 int src = int.Parse(matches[1].Value);
                 int target = int.Parse(matches[2].Value);
@@ -60,17 +65,19 @@ namespace AdventOfCode2022.Src
                 stacks[src - 1] = stacks[src - 1][..^moveCount];
             }
 
+#if DEBUG
             PrintStacks(stacks);
 
             /* last char of each stack is the output */
             stacks.ToList().ForEach(x => Console.Write(x[^1]));
 
             Console.WriteLine();
+#endif
         }
 
         private static string[] PrepareStacks(List<string> startStacks)
         {
-            int stackCount = matchNumbers.Matches(startStacks[^1]).Count;
+            int stackCount = MatchNumber().Matches(startStacks[^1]).Count;
             string[] stacks = new string[stackCount];
 
             for (int i = 0; i < startStacks.Count - 1; ++i)

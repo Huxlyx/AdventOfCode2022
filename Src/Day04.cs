@@ -1,11 +1,11 @@
 ﻿
 namespace AdventOfCode2022.Src
 {
-    public class Day04
+    public class Day04 : IAoC
     {
         private const string INPUT = "Res/Day04.txt";
 
-        public static void RunDay04_1()
+        public static void Part1()
         {
             var lines = File.ReadAllLines(INPUT);
 
@@ -27,10 +27,12 @@ namespace AdventOfCode2022.Src
                 }
             }
 
+#if DEBUG
             Console.WriteLine(fullRangesContained);
+#endif
         }
 
-        public static void RunDay04_2()
+        public static void Part2()
         {
             var lines = File.ReadAllLines(INPUT);
 
@@ -52,7 +54,9 @@ namespace AdventOfCode2022.Src
                 }
             }
 
+#if DEBUG
             Console.WriteLine(overlaps);
+#endif
         }
     }
 }
