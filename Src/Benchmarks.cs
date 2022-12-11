@@ -123,5 +123,17 @@ namespace AdventOfCode2022.Src
             Day10.Part2();
         }
 
+        [Benchmark]
+        public void BenchmarkDay11_1()
+        {
+            Day11.Part1();
+        }
+
+        [Benchmark]
+        public void BenchmarkDay11_2()
+        {
+            Day11.Part2();
+        }
+
     }
 }

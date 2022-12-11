@@ -8,44 +8,49 @@ AMD Ryzen 9 7900X, 1 CPU, 24 logical and 12 physical cores
   DefaultJob : .NET 7.0.0 (7.0.22.51805), X64 RyuJIT AVX2
 
 
-|           Method |      Mean |    Error |    StdDev |    Median |
-|----------------- |----------:|---------:|----------:|----------:|
-| BenchmarkDay01_1 | 126.16 us | 2.480 us |  2.952 us | 124.67 us |
-| BenchmarkDay01_2 | 130.54 us | 2.602 us |  5.136 us | 130.65 us |
-| BenchmarkDay02_1 | 119.35 us | 2.280 us |  4.606 us | 117.39 us |
-| BenchmarkDay02_2 | 118.72 us | 2.293 us |  2.900 us | 118.64 us |
-| BenchmarkDay03_1 | 103.53 us | 2.051 us |  4.190 us | 103.77 us |
-| BenchmarkDay03_2 | 115.77 us | 2.148 us |  4.086 us | 114.86 us |
-| BenchmarkDay04_1 | 186.90 us | 3.700 us |  5.423 us | 185.74 us |
-| BenchmarkDay04_2 | 178.82 us | 3.546 us |  3.483 us | 177.57 us |
-| BenchmarkDay05_1 | 311.60 us | 5.996 us | 15.900 us | 309.60 us |
-| BenchmarkDay05_2 | 234.08 us | 4.041 us |  3.582 us | 233.65 us |
-| BenchmarkDay06_1 | 117.80 us | 0.860 us |  0.718 us | 117.88 us |
-| BenchmarkDay06_2 | 565.33 us | 2.693 us |  2.387 us | 565.17 us |
-| BenchmarkDay07_1 | 534.07 us | 1.424 us |  1.332 us | 534.00 us |
-| BenchmarkDay07_2 | 529.82 us | 1.269 us |  1.187 us | 530.05 us |
-| BenchmarkDay08_1 | 129.70 us | 1.546 us |  1.291 us | 129.73 us |
-| BenchmarkDay08_2 | 229.66 us | 3.311 us |  2.765 us | 229.27 us |
-| BenchmarkDay09_1 | 403.65 us | 7.854 us |  8.729 us | 400.70 us |
-| BenchmarkDay09_2 | 435.19 us | 8.609 us |  9.212 us | 435.70 us |
-| BenchmarkDay10_1 |  84.37 us | 1.676 us |  4.726 us |  82.46 us |
-| BenchmarkDay10_2 |  81.53 us | 1.526 us |  2.421 us |  80.48 us |
+|           Method |        Mean |    Error |   StdDev |
+|----------------- |------------:|---------:|---------:|
+| BenchmarkDay01_1 |   124.09 us | 0.934 us | 0.780 us |
+| BenchmarkDay01_2 |   126.64 us | 1.461 us | 1.296 us |
+| BenchmarkDay02_1 |   118.96 us | 2.288 us | 2.894 us |
+| BenchmarkDay02_2 |   117.01 us | 0.425 us | 0.331 us |
+| BenchmarkDay03_1 |    98.17 us | 0.697 us | 0.618 us |
+| BenchmarkDay03_2 |   109.29 us | 0.706 us | 0.661 us |
+| BenchmarkDay04_1 |   177.72 us | 1.030 us | 0.860 us |
+| BenchmarkDay04_2 |   183.67 us | 3.547 us | 3.795 us |
+| BenchmarkDay05_1 |   297.63 us | 5.914 us | 7.690 us |
+| BenchmarkDay05_2 |   236.93 us | 4.475 us | 4.595 us |
+| BenchmarkDay06_1 |   118.39 us | 2.164 us | 2.024 us |
+| BenchmarkDay06_2 |   570.23 us | 4.621 us | 3.608 us |
+| BenchmarkDay07_1 |   518.48 us | 1.781 us | 1.579 us |
+| BenchmarkDay07_2 |   529.01 us | 3.418 us | 3.197 us |
+| BenchmarkDay08_1 |   127.07 us | 0.633 us | 0.494 us |
+| BenchmarkDay08_2 |   205.41 us | 2.585 us | 2.418 us |
+| BenchmarkDay09_1 |   386.51 us | 2.415 us | 2.141 us |
+| BenchmarkDay09_2 |   396.38 us | 3.237 us | 3.028 us |
+| BenchmarkDay10_1 |    79.26 us | 0.634 us | 0.593 us |
+| BenchmarkDay10_2 |    79.65 us | 0.983 us | 0.871 us |
+| BenchmarkDay11_1 |   128.63 us | 1.007 us | 0.893 us |
+| BenchmarkDay11_2 | 2,957.86 us | 8.217 us | 7.284 us |
 
 // * Hints *
 Outliers
-  Benchmarks.BenchmarkDay01_1: Default -> 1 outlier  was  removed (140.72 us)
-  Benchmarks.BenchmarkDay02_1: Default -> 1 outlier  was  removed (133.36 us)
-  Benchmarks.BenchmarkDay03_2: Default -> 2 outliers were removed (128.76 us, 132.01 us)
-  Benchmarks.BenchmarkDay04_1: Default -> 1 outlier  was  removed (213.10 us)
-  Benchmarks.BenchmarkDay04_2: Default -> 1 outlier  was  removed (190.49 us)
-  Benchmarks.BenchmarkDay05_1: Default -> 3 outliers were removed (358.95 us..406.48 us)
-  Benchmarks.BenchmarkDay05_2: Default -> 1 outlier  was  removed (256.30 us)
-  Benchmarks.BenchmarkDay06_1: Default -> 2 outliers were removed (120.58 us, 121.02 us)
-  Benchmarks.BenchmarkDay06_2: Default -> 1 outlier  was  removed (574.05 us)
-  Benchmarks.BenchmarkDay08_1: Default -> 2 outliers were removed (134.71 us, 138.77 us)
-  Benchmarks.BenchmarkDay08_2: Default -> 2 outliers were removed (243.59 us, 244.48 us)
-  Benchmarks.BenchmarkDay10_1: Default -> 6 outliers were removed (102.23 us..109.28 us)
-  Benchmarks.BenchmarkDay10_2: Default -> 2 outliers were removed (89.26 us, 90.62 us)
+  Benchmarks.BenchmarkDay01_1: Default -> 2 outliers were removed (129.49 us, 131.66 us)
+  Benchmarks.BenchmarkDay01_2: Default -> 1 outlier  was  removed (130.80 us)
+  Benchmarks.BenchmarkDay02_1: Default -> 1 outlier  was  removed (131.48 us)
+  Benchmarks.BenchmarkDay02_2: Default -> 3 outliers were removed (119.16 us..120.36 us)
+  Benchmarks.BenchmarkDay03_1: Default -> 1 outlier  was  removed (100.96 us)
+  Benchmarks.BenchmarkDay04_1: Default -> 2 outliers were removed (183.23 us, 190.14 us)
+  Benchmarks.BenchmarkDay05_1: Default -> 1 outlier  was  removed (335.82 us)
+  Benchmarks.BenchmarkDay06_2: Default -> 3 outliers were removed, 4 outliers were detected (562.93 us, 584.61 us..600.40 us)
+  Benchmarks.BenchmarkDay07_1: Default -> 1 outlier  was  removed (526.58 us)
+  Benchmarks.BenchmarkDay08_1: Default -> 3 outliers were removed, 5 outliers were detected (125.98 us, 126.31 us, 128.73 us..129.85 us)
+  Benchmarks.BenchmarkDay09_1: Default -> 1 outlier  was  removed (402.31 us)
+  Benchmarks.BenchmarkDay10_1: Default -> 1 outlier  was  detected (78.08 us)
+  Benchmarks.BenchmarkDay10_2: Default -> 1 outlier  was  removed (82.53 us)
+  Benchmarks.BenchmarkDay11_1: Default -> 1 outlier  was  removed (132.87 us)
+  Benchmarks.BenchmarkDay11_2: Default -> 1 outlier  was  removed, 2 outliers were detected (2.94 ms, 2.98 ms)
+
 
 // * Legends *
   Mean   : Arithmetic mean of all measurements
