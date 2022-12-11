@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace AdventOfCode2022.Src
@@ -47,6 +48,12 @@ namespace AdventOfCode2022.Src
     ///|----------------- |---------:|--------:|--------:|
     ///| BenchmarkDay09_1 | 400.2 us | 2.80 us | 2.48 us |
     ///| BenchmarkDay09_2 | 412.9 us | 2.78 us | 2.32 us |
+    ///
+    ///simplified move condition checks + direct assignement instead of increment / decrement
+    /// |           Method |     Mean |   Error |  StdDev |
+    /// |----------------- |---------:|--------:|--------:|
+    /// | BenchmarkDay09_1 | 376.8 us | 2.13 us | 1.99 us |
+    /// | BenchmarkDay09_2 | 367.4 us | 1.38 us | 1.29 us |
     /// </summary>
     public class Day09 : IAoC
     {
@@ -78,34 +85,17 @@ namespace AdventOfCode2022.Src
 
             foreach (var line in lines)
             {
-                int dist = int.Parse(line[2..]);
-
-                /* move head */
-                switch (line[0])
-                {
-                    case 'U':
-                        target.Y = head.Y + dist;
-                        break;
-                    case 'D':
-                        target.Y = head.Y - dist;
-                        break;
-                    case 'L':
-                        target.X = head.X - dist;
-                        break;
-                    case 'R':
-                        target.X = head.X + dist;
-                        break;
-                }
+                SetTarget(line, ref head, ref target);
 
                 while (head.X != target.X || head.Y != target.Y)
                 {
                     if (target.X != head.X)
                     {
-                        head.X += target.X > head.X ?  1 :  -1;
+                        head.X = target.X > head.X ? head.X + 1 : head.X - 1;
                     } 
                     else 
                     {
-                        head.Y += target.Y > head.Y ? 1 : -1;
+                        head.Y = target.Y > head.Y ? head.Y + 1 : head.Y - 1;
                     }
                     if (MaybeMove(head, ref tail))
                     {
@@ -133,34 +123,17 @@ namespace AdventOfCode2022.Src
 
             foreach (var line in lines)
             {
-                int dist = int.Parse(line[2..]);
-
-                /* move head */
-                switch (line[0])
-                {
-                    case 'U':
-                        target.Y = chain[0].Y + dist;
-                        break;
-                    case 'D':
-                        target.Y = chain[0].Y - dist;
-                        break;
-                    case 'L':
-                        target.X = chain[0].X - dist;
-                        break;
-                    case 'R':
-                        target.X = chain[0].X + dist;
-                        break;
-                }
+                SetTarget(line, ref chain[0], ref target);
 
                 while (chain[0].X != target.X || chain[0].Y != target.Y)
                 {
                     if (target.X != chain[0].X)
                     {
-                        chain[0].X += target.X > chain[0].X ? 1 : -1;
+                        chain[0].X = target.X > chain[0].X ? chain[0].X + 1 : chain[0].X - 1;
                     }
                     else
                     {
-                        chain[0].Y += target.Y > chain[0].Y ?  1 :  -1;
+                        chain[0].Y = target.Y > chain[0].Y ? chain[0].Y + 1 : chain[0].Y - 1;
                     }
 
                     bool tailDidMove = false;
@@ -185,37 +158,48 @@ namespace AdventOfCode2022.Src
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void SetTarget(string line, ref Pos head, ref Pos target)
+        {
+            int dist = int.Parse(line[2..]);
+
+            /* move head */
+            switch (line[0])
+            {
+                case 'U':
+                    target.Y = head.Y + dist;
+                    break;
+                case 'D':
+                    target.Y = head.Y - dist;
+                    break;
+                case 'L':
+                    target.X = head.X - dist;
+                    break;
+                case 'R':
+                    target.X = head.X + dist;
+                    break;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static bool MaybeMove(Pos lead, ref Pos follow)
         {
-            if (lead.X == follow.X && lead.Y == follow.Y)
-            {
-                return true;
-            }
+            var diffX = lead.X - follow.X;
+            var diffY = lead.Y - follow.Y;
 
-            var diffX = Math.Abs(lead.X - follow.X);
-            var diffY = Math.Abs(lead.Y - follow.Y);
-
-            if (diffX > 1 || diffY > 1)
+            if (diffX < -1 || diffX > 1 || diffY < -1 || diffY > 1)
             {
-                if (lead.X == follow.X && diffY > 1)
-                {
-                    /* tail move up or down */
-                    follow.Y += lead.Y > follow.Y ? 1 : -1;
-                    return true;
-                }
-                else if (lead.Y == follow.Y)
+                if (lead.X != follow.X)
                 {
                     /* tail move left or right */
-                    follow.X += lead.X > follow.X ? 1 : -1;
-                    return true;
+                    follow.X = lead.X > follow.X ? follow.X + 1 : follow.X - 1;
                 }
-                else
+
+                if (lead.Y != follow.Y)
                 {
-                    /* tail move diagonal */
-                    follow.X += lead.X > follow.X ? 1 : -1;
-                    follow.Y += lead.Y > follow.Y ? 1 : -1;
-                    return true;
+                    /* tail move up or down */
+                    follow.Y = lead.Y > follow.Y ? follow.Y + 1 : follow.Y - 1;
                 }
+                return true;
             }
             return false;
         }

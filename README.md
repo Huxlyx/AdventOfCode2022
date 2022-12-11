@@ -26,8 +26,8 @@ AMD Ryzen 9 7900X, 1 CPU, 24 logical and 12 physical cores
 | BenchmarkDay07_2 |   529.01 us | 3.418 us | 3.197 us |
 | BenchmarkDay08_1 |   127.07 us | 0.633 us | 0.494 us |
 | BenchmarkDay08_2 |   205.41 us | 2.585 us | 2.418 us |
-| BenchmarkDay09_1 |   386.51 us | 2.415 us | 2.141 us |
-| BenchmarkDay09_2 |   396.38 us | 3.237 us | 3.028 us |
+| BenchmarkDay09_1 |   379.36 us | 1.785 us | 1.669 us |
+| BenchmarkDay09_2 |   370.04 us | 1.199 us | 1.121 us |
 | BenchmarkDay10_1 |    79.26 us | 0.634 us | 0.593 us |
 | BenchmarkDay10_2 |    79.65 us | 0.983 us | 0.871 us |
 | BenchmarkDay11_1 |   128.63 us | 1.007 us | 0.893 us |
